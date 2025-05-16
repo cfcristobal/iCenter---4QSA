@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>iCenter - Checkout</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .form-section {
+      display: block;
+    }
+    .receiver-section {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">iCenter</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link active" href="checkout.html">Checkout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+    <div class="form-section" id="form-section">
+      <h2 class="text-center fw-bold mb-4">Checkout</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card shadow">
+            <div class="card-header bg-dark text-white">
+              <h4 class="mb-0">Review Your Order</h4>
+            </div>
+            <div class="card-body">
+              <ul class="list-group mb-3" id="checkout-items"></ul>
+              <div class="d-flex justify-content-between">
+                <strong>Total:</strong>
+                <strong>₱<span id="checkout-total">0</span></strong>
+              </div>
+              <hr />
+              <form id="checkout-form">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Full Name</label>
+                  <input type="text" id="name" class="form-control" required/>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email Address</label>
+                  <input type="email" id="email" class="form-control" required/>
+                </div>
+                <div class="mb-3">
+                  <label for="address" class="form-label">Delivery Address</label>
+                  <textarea id="address" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-dark">Submit Order</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="receiver-section" id="receiver-section">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card shadow">
+            <div class="card-header bg-dark text-white">
+              <h4 class="mb-0">Order Confirmation</h4>
+            </div>
+            <div class="card-body text-center">
+              <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
+              <h3 class="mt-3">Thank you for your order!</h3>
+              <p>Your order has been received and is being processed.</p>
+              <div class="mt-4">
+                <h5>Order Summary</h5>
+                <ul class="list-group mb-3" id="receiver-items"></ul>
+                <div class="d-flex justify-content-between">
+                  <strong>Total:</strong>
+                  <strong>₱<span id="receiver-total">0</span></strong>
+                </div>
+              </div>
+              <hr>
+              <div class="text-start">
+                <h5>Customer Information</h5>
+                <p><strong>Name:</strong> <span id="receiver-name"></span></p>
+                <p><strong>Email:</strong> <span id="receiver-email"></span></p>
+                <p><strong>Address:</strong> <span id="receiver-address"></span></p>
+              </div>
+              <a href="index.html" class="btn btn-dark mt-3">Back to Home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>iCenter</h5>
+          <p>Inspired by Apple's design philosophy. Premium products for premium users.</p>
+        </div>
+        <div class="col-md-3">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="text-white">Home</a></li>
+            <li><a href="profile.html" class="text-white">About Us</a></li>
+            <li><a href="checkout.html" class="text-white">Checkout</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5>Contact</h5>
+          <p><i class="bi bi-envelope me-2"></i> support@iCenter.com</p>
+          <p><i class="bi bi-telephone me-2"></i> (045) 499-0136</p>
+        </div>
+      </div>
+      <hr />
+      <p class="text-center mb-0">&copy; 2025 iCenter. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const itemsList = document.getElementById("checkout-items");
+    const totalDisplay = document.getElementById("checkout-total");
+    const nameField = document.getElementById("name");
+    const emailField = document.getElementById("email");
+    const addressField = document.getElementById("address");
+    const formSection = document.getElementById("form-section");
+    const receiverSection = document.getElementById("receiver-section");
+    const receiverItems = document.getElementById("receiver-items");
+    const receiverTotal = document.getElementById("receiver-total");
+    const receiverName = document.getElementById("receiver-name");
+    const receiverEmail = document.getElementById("receiver-email");
+    const receiverAddress = document.getElementById("receiver-address");
+
+    window.onload = () => {
+      const items = JSON.parse(localStorage.getItem("cart")) || [];
+      const total = localStorage.getItem("total") || "0";
+      itemsList.innerHTML = "";
+
+      items.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.className = "list-group-item d-flex justify-content-between align-items-center";
+        li.innerHTML = `${item.name} <span>₱${item.price.toLocaleString()}</span>`;
+        itemsList.appendChild(li);
+      });
+
+      totalDisplay.textContent = parseFloat(total).toLocaleString();
+      nameField.value = localStorage.getItem("name") || "";
+      emailField.value = localStorage.getItem("email") || "";
+      addressField.value = localStorage.getItem("address") || "";
+    };
+
+    document.getElementById("checkout-form").onsubmit = (e) => {
+      e.preventDefault();
+      
+      const items = JSON.parse(localStorage.getItem("cart")) || [];
+      const total = localStorage.getItem("total") || "0";
+      
+      items.forEach(item => {
+        const li = document.createElement("li");
+        li.className = "list-group-item d-flex justify-content-between align-items-center";
+        li.innerHTML = `${item.name} <span>₱${item.price.toLocaleString()}</span>`;
+        receiverItems.appendChild(li);
+      });
+      
+      receiverTotal.textContent = parseFloat(total).toLocaleString();
+      receiverName.textContent = nameField.value;
+      receiverEmail.textContent = emailField.value;
+      receiverAddress.textContent = addressField.value;
+      
+      localStorage.setItem("name", nameField.value);
+      localStorage.setItem("email", emailField.value);
+      localStorage.setItem("address", addressField.value);
+      
+      formSection.style.display = "none";
+      receiverSection.style.display = "block";
+      
+      localStorage.removeItem("cart");
+      localStorage.removeItem("total");
+    };
+  </script>  
+</body>
+</html>
